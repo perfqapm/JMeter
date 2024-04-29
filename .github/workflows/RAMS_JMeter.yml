@@ -44,6 +44,7 @@ jobs:
         npm i moment-timezone
         npm i yargs
         cd ${{ github.workspace }}/apache-jmeter-5.5/bin
+        java -XX:+PrintFlagsFinal -version | grep MaxHeapSize
         ./jmeter -n -t ${{ github.workspace }}/RAMS.jmx
       
     - name: Upload Results
@@ -55,7 +56,6 @@ jobs:
          ${{ github.workspace }}/apache-jmeter-5.5/bin/Aggregate.jtl
          ${{ github.workspace }}/apache-jmeter-5.5/bin/Aggregate.csv
          cd ${{ github.workspace }}/apache-jmeter-5.5/bin
-         java -XX:+PrintFlagsFinal -version | grep MaxHeapSize
          ls
 
     - uses: actions/download-artifact@v3
