@@ -45,7 +45,7 @@ jobs:
         npm i yargs
         cd ${{ github.workspace }}/apache-jmeter-5.5/bin
         java -XX:+PrintFlagsFinal -version | grep MaxHeapSize
-        ./jmeter -n -t ${{ github.workspace }}/RAMS.jmx
+        JVM_ARGS="-Xms256m -Xmx512m" ./jmeter -n -t ${{ github.workspace }}/RAMS.jmx
       
     - name: Upload Results
       uses: actions/upload-artifact@v3.1.2
