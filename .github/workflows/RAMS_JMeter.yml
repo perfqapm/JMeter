@@ -1,0 +1,81 @@
+name: RAMS_JMeter_Script
+
+env:
+#   COLLECTION_URL_OR_JSON: https://api.postman.com/collections/6563878-60a2b653-c51f-483a-b9e0-015a2d1ca455?access_key=PMAT-01H0PVPP5KD0T9EYZPTZ8H95NG
+  REQUEST_TIMEOUT: 5000
+  EMIAL_IDS: lokeshwar.reddy@robosoftin.com
+#   ENVIRONMENT_JSON: ''
+  
+on:
+  # schedule:
+  # - cron: '30 3-9 * * 1-5'
+
+#   push:
+#     branches:
+#       - main
+
+
+  workflow_dispatch:      
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v3
+    
+    - name: dowload jmeter unzip
+      run: |
+        wget https://downloads.apache.org//jmeter/binaries/apache-jmeter-5.5.zip
+        ls
+        unzip apache-jmeter-5.5.zip
+        #cd apache-jmeter-5.5/bin
+        #ls
+                
+    # - name: Echo some info
+    #   run: |
+    #    cd ${{ github.workspace }}/apache-jmeter-5.5/bin
+    #    ./jmeter -v
+    #    ls
+      
+    - name: JMeter Test
+      run: |
+        npm i nodemailer
+        npm i csv-parser
+        npm i moment-timezone
+        npm i yargs
+        cd ${{ github.workspace }}/apache-jmeter-5.5/bin
+        ./jmeter -n -t ${{ github.workspace }}/RAMS.jmx
+      
+    - name: Upload Results
+      uses: actions/upload-artifact@v3.1.2
+      with:
+        name: jmeter-results
+        path: |
+         ${{ github.workspace }}/apache-jmeter-5.5/bin/ViewResultsTree.csv
+         ${{ github.workspace }}/apache-jmeter-5.5/bin/Aggregate.jtl
+         ${{ github.workspace }}/apache-jmeter-5.5/bin/Aggregate.csv
+         cd ${{ github.workspace }}/apache-jmeter-5.5/bin
+         java -XX:+PrintFlagsFinal -version | grep MaxHeapSize
+         ls
+
+    - uses: actions/download-artifact@v3
+      with:
+        name: jmeter-results
+    
+    # - name: Display structure of downloaded files
+    #   run: ls -R
+      
+    # - name: Check file
+    #   run: |
+    #     cd ${{ github.workspace }}/apache-jmeter-5.5/bin
+    #     ls
+        
+    - name: Run JS with args
+      run: |
+          node Run_StartMail.js --emails=${{ inputs.emailIds || '$EMIAL_IDS' }}
+          ls
+          
+    - name: Run JS with args
+      run: |
+          node Run_TriggerMail.js --emails=${{ inputs.emailIds || '$EMIAL_IDS' }}
+          ls
