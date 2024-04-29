@@ -52,9 +52,9 @@ jobs:
       with:
         name: jmeter-results
         path: |
-         ${{ github.workspace }}/apache-jmeter-5.5/bin/ViewResultsTree.csv
+         # ${{ github.workspace }}/apache-jmeter-5.5/bin/ViewResultsTree.csv
          ${{ github.workspace }}/apache-jmeter-5.5/bin/Aggregate.jtl
-         ${{ github.workspace }}/apache-jmeter-5.5/bin/Aggregate.csv
+         # ${{ github.workspace }}/apache-jmeter-5.5/bin/Aggregate.csv
          cd ${{ github.workspace }}/apache-jmeter-5.5/bin
          ls
 
