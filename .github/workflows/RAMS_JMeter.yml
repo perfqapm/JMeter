@@ -25,7 +25,7 @@ jobs:
     
     - name: dowload jmeter unzip
       run: |
-        wget https://downloads.apache.org//jmeter/binaries/apache-jmeter-5.5.zip
+        wget https://archive.apache.org/dist/jmeter/binaries/apache-jmeter-5.5.tgz
         ls
         unzip apache-jmeter-5.5.zip
         #cd apache-jmeter-5.5/bin
