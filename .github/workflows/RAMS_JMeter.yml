@@ -46,8 +46,9 @@ jobs:
         java -version
         sudo su
         cd ${{ github.workspace }}/apache-jmeter-5.5/bin
+        JVM_ARGS="-Xms1g -Xmx2g" ${{ github.workspace }}/apache-jmeter-5.5/bin/jmeter.sh
         java -XX:+PrintFlagsFinal -version | grep MaxHeapSize
-        nohup java -Xms1g -Xmx2g -jar ./ApacheJMeter.jar -n -t ${{ github.workspace }}/RAMS.jmx </dev/null &>/dev/null &
+        java -Xms1g -Xmx2g -jar ./ApacheJMeter.jar -n -t ${{ github.workspace }}/RAMS.jmx
         java -XX:+PrintFlagsFinal -version | grep MaxHeapSize
       
     - name: Upload Results
