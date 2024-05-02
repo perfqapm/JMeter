@@ -44,6 +44,7 @@ jobs:
         npm i moment-timezone
         npm i yargs
         cd ${{ github.workspace }}/apache-jmeter-5.5/bin
+        java -version
         cd /etc/java-11-openjdk
         cat jvm.options
         java -XX:+PrintFlagsFinal -version | grep MaxHeapSize
