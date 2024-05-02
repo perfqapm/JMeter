@@ -43,10 +43,11 @@ jobs:
         npm i csv-parser
         npm i moment-timezone
         npm i yargs
-        cd ${{ github.workspace }}/apache-jmeter-5.5/bin
         java -version
-        cd /etc/java-11-openjdk
-        cat jvm.options
+        cd /etc
+        ls
+        cd..
+        cd ${{ github.workspace }}/apache-jmeter-5.5/bin
         java -XX:+PrintFlagsFinal -version | grep MaxHeapSize
         java -Xms1g -Xmx2g -jar ./ApacheJMeter.jar -n -t ${{ github.workspace }}/RAMS.jmx
         java -XX:+PrintFlagsFinal -version | grep MaxHeapSize
