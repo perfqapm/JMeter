@@ -44,11 +44,10 @@ jobs:
         npm i moment-timezone
         npm i yargs
         java -version
-        sudo su
+        java -Xmx2g ...
         cd ${{ github.workspace }}/apache-jmeter-5.5/bin
-        sed -i '200i JVM_ARGS="-Xms1g -Xmx2g"' ${{ github.workspace }}/apache-jmeter-5.5/bin/jmeter.sh
         java -XX:+PrintFlagsFinal -version | grep MaxHeapSize
-        java -Xms1g -Xmx2g -jar ./ApacheJMeter.jar -n -t ${{ github.workspace }}/RAMS.jmx
+        java -Xms1g -Xmx3g -jar ./ApacheJMeter.jar -n -t ${{ github.workspace }}/RAMS.jmx
         java -XX:+PrintFlagsFinal -version | grep MaxHeapSize
       
     - name: Upload Results
@@ -56,7 +55,7 @@ jobs:
       with:
         name: jmeter-results
         path: |
-         ${{ github.workspace }}/apache-jmeter-5.5/bin/jmeter.sh
+         ${{ github.workspace }}/apache-jmeter-5.5/bin/jmeter.log
          # ${{ github.workspace }}/apache-jmeter-5.5/bin/Aggregate.jtl
          ${{ github.workspace }}/apache-jmeter-5.5/bin/Aggregate.csv
          cd ${{ github.workspace }}/apache-jmeter-5.5/bin
