@@ -44,9 +44,7 @@ jobs:
         npm i moment-timezone
         npm i yargs
         java -version
-        cd /etc
-        ls
-        echo $_JAVA_OPTIONS
+        sudo su
         cd ${{ github.workspace }}/apache-jmeter-5.5/bin
         java -XX:+PrintFlagsFinal -version | grep MaxHeapSize
         java -Xms1g -Xmx2g -jar ./ApacheJMeter.jar -n -t ${{ github.workspace }}/RAMS.jmx
