@@ -46,13 +46,14 @@ jobs:
         cd ${{ github.workspace }}/apache-jmeter-5.5/bin
         java -XX:+PrintFlagsFinal -version | grep MaxHeapSize
         JVM_ARGS="-Xms256m -Xmx512m" ./jmeter -n -t ${{ github.workspace }}/RAMS.jmx
+        java -XX:+PrintFlagsFinal -version | grep MaxHeapSize
       
     - name: Upload Results
       uses: actions/upload-artifact@v3.1.2
       with:
         name: jmeter-results
         path: |
-         # ${{ github.workspace }}/apache-jmeter-5.5/bin/ViewResultsTree.csv
+         ${{ github.workspace }}/apache-jmeter-5.5/bin/jmeter.log
          ${{ github.workspace }}/apache-jmeter-5.5/bin/Aggregate.jtl
          # ${{ github.workspace }}/apache-jmeter-5.5/bin/Aggregate.csv
          cd ${{ github.workspace }}/apache-jmeter-5.5/bin
