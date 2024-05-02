@@ -5,7 +5,7 @@ const sendEmail = require('./Run_StartMail');
 // const value2 = 'tomorrow';
 
 
-const attachmentPaths = ['/home/runner/work/JMeter/JMeter/apache-jmeter-5.5/bin/jmeter.sh','/home/runner/work/JMeter/JMeter/apache-jmeter-5.5/bin/Aggregate.csv'];
+const attachmentPaths = ['/home/runner/work/JMeter/JMeter/apache-jmeter-5.5/bin/jmeter.log','/home/runner/work/JMeter/JMeter/apache-jmeter-5.5/bin/Aggregate.csv'];
 
 // Call the sendEmail function with the variable values
 sendEmail(attachmentPaths);
