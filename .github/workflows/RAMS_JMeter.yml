@@ -46,7 +46,7 @@ jobs:
         java -version
         cd /etc
         ls
-        cd..
+        echo $_JAVA_OPTIONS
         cd ${{ github.workspace }}/apache-jmeter-5.5/bin
         java -XX:+PrintFlagsFinal -version | grep MaxHeapSize
         java -Xms1g -Xmx2g -jar ./ApacheJMeter.jar -n -t ${{ github.workspace }}/RAMS.jmx
