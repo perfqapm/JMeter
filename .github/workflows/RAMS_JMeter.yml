@@ -44,7 +44,7 @@ jobs:
         npm i moment-timezone
         npm i yargs
         java -version
-        docker cp ${{ github.workspace }}/RAMS.jmx f18ea11e303c:/bin/RAMS.jmx
+        docker cp ${{ github.workspace }}/RAMS.jmx /bin/RAMS.jmx
         docker run jmeter -n -t /bin/RAMS.jmx
         # cd ${{ github.workspace }}/apache-jmeter-5.5/bin
         # java -XX:+PrintFlagsFinal -version | grep MaxHeapSize
