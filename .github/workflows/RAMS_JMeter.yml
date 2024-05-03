@@ -25,8 +25,8 @@ jobs:
     
     - name: dowload jmeter unzip
       run: |
-        docker pull https://github.com/perfqapm/docker-jmeter.git
-        docker tag docker-jmeter jmeter
+        docker pull justb4/jmeter
+        docker tag justb4/jmeter jmeter
         docker images
         #cd apache-jmeter-5.5/bin
         #ls
