@@ -45,7 +45,7 @@ jobs:
         npm i yargs
         java -version
         # docker cp ${{ github.workspace }}/RAMS.jmx /bin/RAMS.jmx
-        docker run jmeter -n -t tests/trivial/test-plan.jmx.jmx
+        docker run jmeter -n -t tests/trivial/test-plan.jmx
         # cd ${{ github.workspace }}/apache-jmeter-5.5/bin
         # java -XX:+PrintFlagsFinal -version | grep MaxHeapSize
         # java -Xms1m -Xmx6m -jar ./ApacheJMeter.jar -n -t ${{ github.workspace }}/RAMS.jmx && java -Xms20m -Xmx60m -jar ./ApacheJMeter.jar -n -t ${{ github.workspace }}/RAMS.jmx
