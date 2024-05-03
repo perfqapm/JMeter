@@ -25,9 +25,9 @@ jobs:
     
     - name: dowload jmeter unzip
       run: |
-        wget https://archive.apache.org/dist/jmeter/binaries/apache-jmeter-5.5.zip
-        ls
-        unzip apache-jmeter-5.5.zip
+        docker pull justb4/jmeter
+        docker tag justb4/jmeter jmeter
+        docker images
         #cd apache-jmeter-5.5/bin
         #ls
                 
@@ -44,10 +44,11 @@ jobs:
         npm i moment-timezone
         npm i yargs
         java -version
-        cd ${{ github.workspace }}/apache-jmeter-5.5/bin
-        java -XX:+PrintFlagsFinal -version | grep MaxHeapSize
-        java -Xms1m -Xmx6m -jar ./ApacheJMeter.jar -n -t ${{ github.workspace }}/RAMS.jmx && java -Xms20m -Xmx60m -jar ./ApacheJMeter.jar -n -t ${{ github.workspace }}/RAMS.jmx
-        java -XX:+PrintFlagsFinal -version | grep MaxHeapSize
+        docker run jmeter -n -t ${{ github.workspace }}/RAMS.jmx
+        # cd ${{ github.workspace }}/apache-jmeter-5.5/bin
+        # java -XX:+PrintFlagsFinal -version | grep MaxHeapSize
+        # java -Xms1m -Xmx6m -jar ./ApacheJMeter.jar -n -t ${{ github.workspace }}/RAMS.jmx && java -Xms20m -Xmx60m -jar ./ApacheJMeter.jar -n -t ${{ github.workspace }}/RAMS.jmx
+        # java -XX:+PrintFlagsFinal -version | grep MaxHeapSize
       
     - name: Upload Results
       uses: actions/upload-artifact@v3.1.2
